@@ -31,7 +31,7 @@ def element_wise_sum(input_list_1, input_list_2):
 def dict_to_list(input_dict):
     tupleslist = []
 
-    for (key, value) in input_dict:
+    for (key, value) in input_dict.items():
         tupleslist.append((key, value))
 
     return tupleslist
