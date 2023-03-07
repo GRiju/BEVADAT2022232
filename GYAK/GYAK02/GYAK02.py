@@ -9,6 +9,8 @@ import numpy as np
 def create_array(size = (2,2)):
     return np.zeros(size)
 
+print(create_array((3,3)))
+
 #Készíts egy függvényt ami a paraméterként kapott array-t főátlóját feltölti egyesekkel
 #Be: [[1,2],[3,4]]
 #Ki: [[1,2],[3,1]]
@@ -61,7 +63,7 @@ def bool_array(array):
 def invert_bool_array(array):
     return np.invert(array.astype(bool))
 
-print(invert_bool_array(np.array([[1, 0, 0], [1, 1, 1],[0, 0, 0]])))
+#print(invert_bool_array(np.array([[1, 0, 0], [1, 1, 1],[0, 0, 0]])))
 
 
 # Készíts egy olyan függvényt ami a paraméterként kapott array-t kilapítja
