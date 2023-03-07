@@ -9,7 +9,7 @@ import numpy as np
 def create_array(size = (2,2)):
     return np.zeros(size)
 
-print(create_array((3,3)))
+#print(create_array((3,3)))
 
 #Készíts egy függvényt ami a paraméterként kapott array-t főátlóját feltölti egyesekkel
 #Be: [[1,2],[3,4]]
