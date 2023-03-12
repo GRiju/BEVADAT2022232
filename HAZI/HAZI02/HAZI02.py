@@ -20,7 +20,9 @@ def column_swap(array):
 # egyenlő elemszámúakra kell csak hogy működjön
 
 def compare_two_array(array1, array2):
-    return array1 == array2
+    return np.where(array1 == array2)[0]
+
+#print(compare_two_array(np.array([7,8,9]), np.array([9,8,7])))
 
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
 # Be: [[1,2,3], [4,5,6]]
@@ -30,9 +32,11 @@ def compare_two_array(array1, array2):
 
 def get_array_shape(array):
     shape = np.shape(array)
-    print("Sor: " + str(shape[0]) + ", oszlop: " + str(shape[1]) + ", melyseg: " + str(len(shape)-1))
+    return "sor: " + str(shape[0]) + ", oszlop: " + str(shape[1]) + ", melyseg: " + str(len(shape)-1)
 
-#get_array_shape([[[1,2,3], [4,5,6], [4,5,6]],[[1,2,3], [4,5,6], [4,5,6]]])
+#print(get_array_shape([[[1,2,3], [4,5,6], [4,5,6]],[[1,2,3], [4,5,6], [4,5,6]]]))
+#print(get_array_shape([[1,2,3], [4,5,6]]))
+
 
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből. 
 # Bementként add meg az array-t, illetve hogy mennyi class-od van. Kimenetként pedig adjon vissza egy 2d array-t, ahol a sorok az egyes elemek.
@@ -122,18 +126,23 @@ def add_border(array):
 # list_days()
 
 def list_days(date1, date2):
-    start = datetime.strptime(date1, '%Y-%m')
-    end = datetime.strptime(date2, '%Y-%m')
-    days = np.arange(start, end + timedelta(days=1), timedelta(days=1)).astype(datetime)
-    return np.char.array(days.strftime('%Y-%m-%d'))
+    start = np.datetime64(date1)
+    end = np.datetime64(date2) + np.timedelta64(1, 'D')
+    days = np.arange(start, end, np.timedelta64(1, 'D'))
+    days_str = np.array([str(d) for d in days])
+    return days_str
+
+#print(list_days('2023-03', '2023-04'))
 
 # Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD. Térjen vissza egy 'numpy.datetime64' típussal.
 # Be:
 # Ki: 2017-03-24
 
-def get_current_date():
+def get_act_date():
     today = np.datetime64('today')
     return np.datetime_as_string(today, 'D')
+
+#print(get_act_date())
 
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:02:00 óta. Int-el térjen vissza
 # Be: 
@@ -144,3 +153,5 @@ def sec_from_1970():
     start_time = np.datetime64('1970-01-01T00:02:00')
     current_time = np.datetime64('now')
     return int((current_time - start_time) / np.timedelta64(1, 's'))
+
+#print(sec_from_1970())
