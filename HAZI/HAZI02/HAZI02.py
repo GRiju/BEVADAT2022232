@@ -11,18 +11,19 @@ def column_swap(array):
     array[:, [1, 0]] = array[:, [0, 1]]
     return array
 
-#print(column_swap(np.array([[1,2],[3,4]])))
+# print(column_swap(np.array([[1,2],[3,4]])))
 
-# Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek 
-# Pl Be: [7,8,9], [9,8,7] 
+# Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek
+# Pl Be: [7,8,9], [9,8,7]
 # Ki: [1]
 # compare_two_array()
 # egyenlő elemszámúakra kell csak hogy működjön
 
+
 def compare_two_array(array1, array2):
     return np.where(array1 == array2)[0]
 
-#print(compare_two_array(np.array([7,8,9]), np.array([9,8,7])))
+# print(compare_two_array(np.array([7,8,9]), np.array([9,8,7])))
 
 # Készíts egy olyan függvényt, ami vissza adja string-ként a megadott array dimenzióit:
 # Be: [[1,2,3], [4,5,6]]
@@ -30,17 +31,47 @@ def compare_two_array(array1, array2):
 # get_array_shape()
 # 3D-vel még műküdnie kell!
 
+
 def get_array_shape(array):
     shape = np.shape(array)
-    return "sor: " + str(shape[0]) + ", oszlop: " + str(shape[1]) + ", melyseg: " + str(len(shape)-1)
+    shapelen = len(shape)-1
+    if(shapelen == 0):
+        return "sor: " + str(shape[0]) + ", oszlop: 0, melyseg: " + str(len(shape)-1)
+    elif(shapelen >= 1):
+        return "sor: " + str(shape[0]) + ", oszlop: " + str(shape[1]) + ", melyseg: " + str(len(shape)-1)
 
-#print(get_array_shape([[[1,2,3], [4,5,6], [4,5,6]],[[1,2,3], [4,5,6], [4,5,6]]]))
-#print(get_array_shape([[1,2,3], [4,5,6]]))
+
+# print(get_array_shape(
+#     [
+#         [
+#             [1, 2, 3],
+#             [4, 5, 6],
+#             [4, 5, 6]
+#         ],
+#         [
+#             [1, 2, 3],
+#             [4, 5, 6],
+#             [4, 5, 6]
+#         ],
+#         [
+#             [1, 2, 3],
+#             [4, 5, 6],
+#             [4, 5, 6]
+#         ]
+#     ]))
+
+# print(get_array_shape(
+#     [
+#         [1, 2, 3],
+#         [4, 5, 6]
+#     ]))
+
+# print(get_array_shape([]))
 
 
-# Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből. 
+# Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges pred-et egy numpy array-ből.
 # Bementként add meg az array-t, illetve hogy mennyi class-od van. Kimenetként pedig adjon vissza egy 2d array-t, ahol a sorok az egyes elemek.
-# Minden nullákkal teli legyen és csak ott álljon egyes, ahol a bementi tömb megjelöli. 
+# Minden nullákkal teli legyen és csak ott álljon egyes, ahol a bementi tömb megjelöli.
 # Pl. ha 1 van a bemeneten és 4 classod van, akkor az adott sorban az array-ban a [1] helyen álljon egy 1-es, a többi helyen pedig 0.
 # Be: [1, 2, 0, 3], 4
 # Ki: [[0,1,0,0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]]
@@ -54,6 +85,7 @@ def encode_Y(array, numofclasses):
 # Ki:  [1, 2, 0, 3]
 # decode_Y()
 
+
 def decode_Y(array):
     return np.argmax(array, 1)
 
@@ -63,6 +95,7 @@ def decode_Y(array):
 # Ki: 'szilva'
 # eval_classification()
 
+
 def eval_classification(list, array):
     return list[np.argmax(array)]
 
@@ -70,6 +103,7 @@ def eval_classification(list, array):
 # Be: [1,2,3,4,5,6]
 # Ki: [-1,2,-1,4,-1,6]
 # repalce_odd_numbers()
+
 
 def replace_odd_numbers(array):
     array[np.where(array % 2 == 1)] = -1
@@ -80,6 +114,7 @@ def replace_odd_numbers(array):
 # Be: [1, 2, 5, 0], 2
 # Ki: [-1, 1, 1, -1]
 # replace_by_value()
+
 
 def replace_by_value(array, value):
     v1 = np.where(array >= value)
@@ -96,6 +131,7 @@ def replace_by_value(array, value):
 # array_multi()
 # Ha több dimenziós a tömb, akkor az egész tömb elemeinek szorzatával térjen vissza
 
+
 def array_multi(array):
     return np.prod(array)
 
@@ -104,6 +140,7 @@ def array_multi(array):
 # Ki: [2, 12]
 # array_multi_2d()
 
+
 def array_multi_2d(array):
     return np.prod(array, 1)
 
@@ -111,6 +148,7 @@ def array_multi_2d(array):
 # Be: [[1,2],[3,4]]
 # Ki: [[0,0,0,0],[0,1,2,0],[0,3,4,0],[0,0,0,0]]
 # add_border()
+
 
 def add_border(array):
     x, y = array.shape
@@ -125,6 +163,7 @@ def add_border(array):
 # Ki: ['2023-03-01', '2023-03-02', .. , '2023-03-31',]
 # list_days()
 
+
 def list_days(date1, date2):
     start = np.datetime64(date1)
     end = np.datetime64(date2)
@@ -132,26 +171,28 @@ def list_days(date1, date2):
     days_str = np.array([str(d) for d in days])
     return days_str
 
-print(list_days('2023-03', '2023-04'))
+# print(list_days('2023-03', '2023-04'))
 
 # Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD. Térjen vissza egy 'numpy.datetime64' típussal.
 # Be:
 # Ki: 2017-03-24
 
+
 def get_act_date():
     today = np.datetime64('today')
     return today
 
-#print(get_act_date())
+# print(get_act_date())
 
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:02:00 óta. Int-el térjen vissza
-# Be: 
+# Be:
 # Ki: másodpercben az idó, int-é kasztolva
 # sec_from_1970()
+
 
 def sec_from_1970():
     start_time = np.datetime64('1970-01-01T00:02:00')
     current_time = np.datetime64('now')
     return int((current_time - start_time) / np.timedelta64(1, 's'))
 
-#print(sec_from_1970())
+# print(sec_from_1970())
