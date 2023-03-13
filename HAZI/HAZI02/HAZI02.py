@@ -127,12 +127,12 @@ def add_border(array):
 
 def list_days(date1, date2):
     start = np.datetime64(date1)
-    end = np.datetime64(date2) + np.timedelta64(1, 'D')
+    end = np.datetime64(date2)
     days = np.arange(start, end, np.timedelta64(1, 'D'))
     days_str = np.array([str(d) for d in days])
     return days_str
 
-#print(list_days('2023-03', '2023-04'))
+print(list_days('2023-03', '2023-04'))
 
 # Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD. Térjen vissza egy 'numpy.datetime64' típussal.
 # Be:
@@ -140,7 +140,7 @@ def list_days(date1, date2):
 
 def get_act_date():
     today = np.datetime64('today')
-    return np.datetime_as_string(today, 'D')
+    return today
 
 #print(get_act_date())
 
